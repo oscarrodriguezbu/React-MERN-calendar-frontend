@@ -28,7 +28,7 @@ const customStyles = {
     },
 };
 
-if (getEnvVariables().VITE_MODE !== 'test') {
+if (getEnvVariables().VITE_MODE !== 'test') { //esto es importante para ignorar esto si se ejecuta en testing
     Modal.setAppElement('#root');
 }
 

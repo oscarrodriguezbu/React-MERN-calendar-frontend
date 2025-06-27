@@ -8,16 +8,14 @@ jest.mock('../../src/hooks/useAuthStore');
 
 jest.mock('../../src/calendar', () => ({
     CalendarPage: () => <h1>CalendarPage</h1>
-}))
-
-
+})); // esto evita que se cargue ese componente al momento de hacer la prueba respectiva
 
 
 describe('Pruebas en <AppRouter />', () => {
 
     const mockCheckAuthToken = jest.fn();
 
-    beforeEach(() => jest.clearAllMocks() );
+    beforeEach(() => jest.clearAllMocks());
 
 
     test('debe de mostrar la pantalla de carga y llamar checkAuthToken', () => {
@@ -27,14 +25,14 @@ describe('Pruebas en <AppRouter />', () => {
             checkAuthToken: mockCheckAuthToken
         });
 
-        render( <AppRouter /> )
-        expect( screen.getByText('Cargando...') ).toBeTruthy() 
-        expect( mockCheckAuthToken ).toHaveBeenCalled();
+        render(<AppRouter />)
+        expect(screen.getByText('Cargando...')).toBeTruthy()
+        expect(mockCheckAuthToken).toHaveBeenCalled();
 
     });
 
     test('debe de mostrar el login en caso de no estar autenticado', () => {
-        
+
         useAuthStore.mockReturnValue({
             status: 'not-authenticated',
             checkAuthToken: mockCheckAuthToken
@@ -46,12 +44,12 @@ describe('Pruebas en <AppRouter />', () => {
             </MemoryRouter>
         );
 
-        expect( screen.getByText('Ingreso') ).toBeTruthy();
-        expect( container ).toMatchSnapshot(); 
+        expect(screen.getByText('Ingreso')).toBeTruthy();
+        expect(container).toMatchSnapshot();
     });
 
     test('debe de mostrar el calendario si estamos autenticados', () => {
-        
+
         useAuthStore.mockReturnValue({
             status: 'authenticated',
             checkAuthToken: mockCheckAuthToken
@@ -63,11 +61,8 @@ describe('Pruebas en <AppRouter />', () => {
             </MemoryRouter>
         );
 
-        expect( screen.getByText('CalendarPage') ).toBeTruthy();
-        
+        expect(screen.getByText('CalendarPage')).toBeTruthy();
+
     });
-    
 
-
-    
 });

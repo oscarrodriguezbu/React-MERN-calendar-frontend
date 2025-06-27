@@ -1,6 +1,6 @@
 
 # Calendar APP
-This is the frontend of the calendar project as part of the MERN stack. This frontend was developed with React, Redux, Hooks and JavaScript.
+This is the frontend of the calendar project as part of the MERN stack. This frontend was developed with React, Redux, Hooks and JavaScript. It also has unit tests with Jest. By the way, to run unit tests the backend must be started.
 
 
 ## Development steps
